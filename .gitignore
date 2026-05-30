@@ -1,0 +1,74 @@
+# ================================
+# Haze — .gitignore
+# macOS Swift / Xcode project
+# ================================
+
+# ----- Secrets & Local Config -----
+.env
+.env.local
+.env.*.local
+*.pem
+*.p12
+*.mobileprovision
+
+# ----- Xcode -----
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+*.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+build/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+
+# ----- Swift Package Manager -----
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+*.resolved
+
+# ----- macOS -----
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# ----- Instruments / Profiling -----
+*.trace
+
+# ----- Codesigning / Notarization -----
+*.cer
+ExportOptions.plist
+
+# ----- CI / Build outputs -----
+*.dmg
+*.pkg
+*.zip
+*.app
+artifacts/
+
+# ----- Sparkle appcast private key -----
+sparkle_private_key
+
+# ----- Editor & IDE -----
+.vscode/
+*.swp
+*.swo
+*~
+.idea/
