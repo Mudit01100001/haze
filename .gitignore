@@ -72,3 +72,4 @@ sparkle_private_key
 *.swo
 *~
 .idea/
+handoff.md
