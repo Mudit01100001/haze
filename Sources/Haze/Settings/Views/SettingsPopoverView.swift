@@ -40,6 +40,7 @@ struct SettingsPopoverView: View {
                     BlurTileView()
                     OverlayTileView()
                     GrainTileView()
+                    EffectsTileView()
                     GesturesTileView()
                 }
                 .padding(.horizontal, 12)

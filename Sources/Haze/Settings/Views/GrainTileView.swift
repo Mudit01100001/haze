@@ -25,7 +25,7 @@ struct GrainTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.grainIntensity, in: 0...1, step: 0.01)
+                Slider(value: $settings.grainIntensity, in: 0...1)
             }
 
             // Size slider
@@ -39,7 +39,7 @@ struct GrainTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.grainSize, in: 0.5...4, step: 0.1)
+                Slider(value: $settings.grainSize, in: 0.5...4)
             }
 
             // Animation toggle
@@ -58,7 +58,7 @@ struct GrainTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.grainSpeed, in: 0.5...3, step: 0.1)
+                Slider(value: $settings.grainSpeed, in: 0.5...3)
             }
             .opacity(settings.isGrainAnimated ? 1.0 : 0.5)
             .disabled(!settings.isGrainAnimated)

@@ -28,7 +28,7 @@ struct BlurTileView: View {
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                     }
-                    Slider(value: $settings.blurRadius, in: 0...40, step: 1)
+                    Slider(value: $settings.blurRadius, in: 0...40)
                 }
             }
 
@@ -53,7 +53,7 @@ struct BlurTileView: View {
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                     }
-                    Slider(value: $settings.dynamicBlurFalloff, in: 0.1...3.0, step: 0.1)
+                    Slider(value: $settings.dynamicBlurFalloff, in: 0.1...3.0)
                 }
                 .padding(.leading, 16)
             }
@@ -76,7 +76,7 @@ struct BlurTileView: View {
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                     }
-                    Slider(value: $settings.grayscaleIntensity, in: 0...1, step: 0.01)
+                    Slider(value: $settings.grayscaleIntensity, in: 0...1)
                 }
             }
         }

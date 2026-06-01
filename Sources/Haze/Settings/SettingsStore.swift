@@ -35,6 +35,19 @@ final class SettingsStore: ObservableObject {
     /// Falloff multiplier for the dynamic blur gradient. Range: 0.1–3.0.
     @AppStorage("dynamicBlurFalloff") var dynamicBlurFalloff: Double = 1.6
 
+    // MARK: - Chromatic Aberration (Lens Effect)
+
+    /// Whether the optical chromatic aberration lens effect is enabled.
+    @AppStorage("isChromaticAberrationEnabled") var isChromaticAberrationEnabled: Bool = true
+
+    /// Intensity of the chromatic aberration. Range: 0–20.
+    @AppStorage("chromaticAberrationIntensity") var chromaticAberrationIntensity: Double = 5.0
+
+    // MARK: - Audio
+
+    /// Whether the premium bootup synth chime plays on overlay activation.
+    @AppStorage("isBootSoundEnabled") var isBootSoundEnabled: Bool = true
+
     // MARK: - Dim / Overlay
 
     /// Opacity of the solid-color dim layer. Range: 0–0.9.

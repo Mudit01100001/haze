@@ -47,7 +47,7 @@ struct OverlayTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.dimOpacity, in: 0...0.9, step: 0.01)
+                Slider(value: $settings.dimOpacity, in: 0...0.9)
             }
 
             Divider()
@@ -68,6 +68,35 @@ struct OverlayTileView: View {
                 Spacer()
                 ColorPicker("", selection: $customColor, supportsOpacity: false)
                     .labelsHidden()
+            }
+            Divider()
+
+            // Fade In slider
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text("Fade in duration")
+                        .font(.callout)
+                    Spacer()
+                    Text("\(settings.fadeInDuration, specifier: "%.1f")s")
+                        .font(.callout)
+                        .monospacedDigit()
+                        .foregroundStyle(.secondary)
+                }
+                Slider(value: $settings.fadeInDuration, in: 0.2...2.0)
+            }
+
+            // Fade Out slider
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text("Fade out duration")
+                        .font(.callout)
+                    Spacer()
+                    Text("\(settings.fadeOutDuration, specifier: "%.2f")s")
+                        .font(.callout)
+                        .monospacedDigit()
+                        .foregroundStyle(.secondary)
+                }
+                Slider(value: $settings.fadeOutDuration, in: 0.1...1.0)
             }
         }
         .glassCard()

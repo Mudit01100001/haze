@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		113AAC2394E63FD6C2883D15 /* BootSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907723C37D6A5075E1E64C5 /* BootSoundManager.swift */; };
+		170BBA011DCF07C82E278B98 /* GrainEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2669A3AA380913E37404F90E /* GrainEngine.swift */; };
+		20D74AB9163E972F6F62ECE2 /* OverlayTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B38855372126EC43F378FAC /* OverlayTileView.swift */; };
+		2F90F6EBB4EDAAF0D26CE3A1 /* BlurTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130A13E6793CD8EBDFEBF9FF /* BlurTileView.swift */; };
+		3969F008AD4E2EA8852CE346 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A598AAEE2C0E7DAF904138E7 /* Assets.xcassets */; };
+		4DEB5F28045D5C2DCB6E5F38 /* SettingsPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0999BF9B074596CA83A805 /* SettingsPopoverView.swift */; };
+		6E331780F3A42F39D0A810B3 /* OverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86B3794D9E8D9B40590ED9E /* OverlayController.swift */; };
+		77ADC33BAD7B1760A63E7F76 /* GesturesTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180B56385B5E62C62EA3AC8 /* GesturesTileView.swift */; };
+		7FFA259AD3BA1CAACFE40BB7 /* ScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E444D904BFDE6EEBFE8200 /* ScreenGeometry.swift */; };
+		86ED2E024E61B5DF64AE9C5E /* GrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAF580FE5023BC1B912619 /* GrainRenderer.swift */; };
+		942F1BE1A5718452C93D444D /* DimLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDA9E5ABC9D5AECBC099139 /* DimLayer.swift */; };
+		95C49D9E37BE9EC2969D438B /* WindowTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29902B6AD92627064A741CF /* WindowTracker.swift */; };
+		9B3134B3A24B8DAF311B3C70 /* EffectsTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590B9ED694E0609CC3A5B87 /* EffectsTileView.swift */; };
+		A66326EB975C2336D1CF2A0D /* GrainShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 22BADC60D96E05E4EF1AC3FE /* GrainShaders.metal */; };
+		C01D8589E2E5DDF71089D110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DC3D7D0F9CACDEAF83B69B /* AppDelegate.swift */; };
+		C02B6D1CF354A4B3F9D3127B /* FilmGrain.metal in Sources */ = {isa = PBXBuildFile; fileRef = BDBEA99E694E48A85E9A2509 /* FilmGrain.metal */; };
+		D0D26BF920262C83B36B2962 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031E67B7ED358557FC2BE4B /* SettingsStore.swift */; };
+		D1ACF5F4A76C08EE943EF74B /* GestureEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B1134704F41E835F88AB2 /* GestureEngine.swift */; };
+		DE5B4B135DF4C52632B958C5 /* GrainTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721ECFC61198A2A7A6B381E /* GrainTileView.swift */; };
+		FFC4F71E95673B00AC5B8FBF /* HazeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2620091100CB8BFF260FAF /* HazeApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0180B56385B5E62C62EA3AC8 /* GesturesTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesTileView.swift; sourceTree = "<group>"; };
+		0F86F39AFEC298882D98A059 /* Haze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haze.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		130A13E6793CD8EBDFEBF9FF /* BlurTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTileView.swift; sourceTree = "<group>"; };
+		1907723C37D6A5075E1E64C5 /* BootSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootSoundManager.swift; sourceTree = "<group>"; };
+		22BADC60D96E05E4EF1AC3FE /* GrainShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GrainShaders.metal; sourceTree = "<group>"; };
+		24E444D904BFDE6EEBFE8200 /* ScreenGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenGeometry.swift; sourceTree = "<group>"; };
+		2669A3AA380913E37404F90E /* GrainEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrainEngine.swift; sourceTree = "<group>"; };
+		2BDA9E5ABC9D5AECBC099139 /* DimLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimLayer.swift; sourceTree = "<group>"; };
+		3B38855372126EC43F378FAC /* OverlayTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayTileView.swift; sourceTree = "<group>"; };
+		3E2620091100CB8BFF260FAF /* HazeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HazeApp.swift; sourceTree = "<group>"; };
+		7590B9ED694E0609CC3A5B87 /* EffectsTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsTileView.swift; sourceTree = "<group>"; };
+		763B1134704F41E835F88AB2 /* GestureEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEngine.swift; sourceTree = "<group>"; };
+		8721ECFC61198A2A7A6B381E /* GrainTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrainTileView.swift; sourceTree = "<group>"; };
+		A598AAEE2C0E7DAF904138E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ABAAF580FE5023BC1B912619 /* GrainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrainRenderer.swift; sourceTree = "<group>"; };
+		AC0999BF9B074596CA83A805 /* SettingsPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopoverView.swift; sourceTree = "<group>"; };
+		B5DC3D7D0F9CACDEAF83B69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B86B3794D9E8D9B40590ED9E /* OverlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayController.swift; sourceTree = "<group>"; };
+		BDBEA99E694E48A85E9A2509 /* FilmGrain.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = FilmGrain.metal; sourceTree = "<group>"; };
+		C031E67B7ED358557FC2BE4B /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		C29902B6AD92627064A741CF /* WindowTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTracker.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0F279A25C7829F12E10D611C /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BDBEA99E694E48A85E9A2509 /* FilmGrain.metal */,
+				22BADC60D96E05E4EF1AC3FE /* GrainShaders.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		17C416AB34F8D13C0BA70DD2 /* Haze */ = {
+			isa = PBXGroup;
+			children = (
+				A598AAEE2C0E7DAF904138E7 /* Assets.xcassets */,
+				94759C14AA8D38BEF929910D /* App */,
+				4F1C99CBB5047DCBCB1A78D2 /* Core */,
+				B878CDE81D35B8414A5B483D /* Overlay */,
+				B51B715221FEF8C3C9D0D359 /* Settings */,
+				0F279A25C7829F12E10D611C /* Shaders */,
+				367265EDD2F1A95AA79A83B1 /* Utilities */,
+			);
+			name = Haze;
+			path = Sources/Haze;
+			sourceTree = "<group>";
+		};
+		19F3815B8FFFB1EDAD2562F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				130A13E6793CD8EBDFEBF9FF /* BlurTileView.swift */,
+				7590B9ED694E0609CC3A5B87 /* EffectsTileView.swift */,
+				0180B56385B5E62C62EA3AC8 /* GesturesTileView.swift */,
+				8721ECFC61198A2A7A6B381E /* GrainTileView.swift */,
+				3B38855372126EC43F378FAC /* OverlayTileView.swift */,
+				AC0999BF9B074596CA83A805 /* SettingsPopoverView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		28E6FCDB2C9BFED026A09DA3 = {
+			isa = PBXGroup;
+			children = (
+				17C416AB34F8D13C0BA70DD2 /* Haze */,
+				34127776297F87BD003E1DC5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		34127776297F87BD003E1DC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0F86F39AFEC298882D98A059 /* Haze.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		367265EDD2F1A95AA79A83B1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1907723C37D6A5075E1E64C5 /* BootSoundManager.swift */,
+				24E444D904BFDE6EEBFE8200 /* ScreenGeometry.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4F1C99CBB5047DCBCB1A78D2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				763B1134704F41E835F88AB2 /* GestureEngine.swift */,
+				C29902B6AD92627064A741CF /* WindowTracker.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		94759C14AA8D38BEF929910D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B5DC3D7D0F9CACDEAF83B69B /* AppDelegate.swift */,
+				3E2620091100CB8BFF260FAF /* HazeApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B51B715221FEF8C3C9D0D359 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C031E67B7ED358557FC2BE4B /* SettingsStore.swift */,
+				19F3815B8FFFB1EDAD2562F8 /* Views */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B878CDE81D35B8414A5B483D /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				2BDA9E5ABC9D5AECBC099139 /* DimLayer.swift */,
+				2669A3AA380913E37404F90E /* GrainEngine.swift */,
+				ABAAF580FE5023BC1B912619 /* GrainRenderer.swift */,
+				B86B3794D9E8D9B40590ED9E /* OverlayController.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3036F23453145BBFFF1048C5 /* Haze */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0CEABE632E017CC5E79E798 /* Build configuration list for PBXNativeTarget "Haze" */;
+			buildPhases = (
+				E02B02780E589DC3CD6AFCED /* Sources */,
+				CAC2B6FBF1A5193FB2B36550 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Haze;
+			packageProductDependencies = (
+			);
+			productName = Haze;
+			productReference = 0F86F39AFEC298882D98A059 /* Haze.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6EA93D6782B50B25E111F341 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					3036F23453145BBFFF1048C5 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = DE389B27926A452E032D73A8 /* Build configuration list for PBXProject "Haze" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 28E6FCDB2C9BFED026A09DA3;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 34127776297F87BD003E1DC5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3036F23453145BBFFF1048C5 /* Haze */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CAC2B6FBF1A5193FB2B36550 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3969F008AD4E2EA8852CE346 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E02B02780E589DC3CD6AFCED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C01D8589E2E5DDF71089D110 /* AppDelegate.swift in Sources */,
+				2F90F6EBB4EDAAF0D26CE3A1 /* BlurTileView.swift in Sources */,
+				113AAC2394E63FD6C2883D15 /* BootSoundManager.swift in Sources */,
+				942F1BE1A5718452C93D444D /* DimLayer.swift in Sources */,
+				9B3134B3A24B8DAF311B3C70 /* EffectsTileView.swift in Sources */,
+				C02B6D1CF354A4B3F9D3127B /* FilmGrain.metal in Sources */,
+				D1ACF5F4A76C08EE943EF74B /* GestureEngine.swift in Sources */,
+				77ADC33BAD7B1760A63E7F76 /* GesturesTileView.swift in Sources */,
+				170BBA011DCF07C82E278B98 /* GrainEngine.swift in Sources */,
+				86ED2E024E61B5DF64AE9C5E /* GrainRenderer.swift in Sources */,
+				A66326EB975C2336D1CF2A0D /* GrainShaders.metal in Sources */,
+				DE5B4B135DF4C52632B958C5 /* GrainTileView.swift in Sources */,
+				FFC4F71E95673B00AC5B8FBF /* HazeApp.swift in Sources */,
+				6E331780F3A42F39D0A810B3 /* OverlayController.swift in Sources */,
+				20D74AB9163E972F6F62ECE2 /* OverlayTileView.swift in Sources */,
+				7FFA259AD3BA1CAACFE40BB7 /* ScreenGeometry.swift in Sources */,
+				4DEB5F28045D5C2DCB6E5F38 /* SettingsPopoverView.swift in Sources */,
+				D0D26BF920262C83B36B2962 /* SettingsStore.swift in Sources */,
+				95C49D9E37BE9EC2969D438B /* WindowTracker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		066FFCC64C6BA73100DC99E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1961EC652139434A489E36B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Sources/Haze/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudit.Haze;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1CB1D52E7FF5A9E3429944BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		472E02FB7A868B1797374012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Sources/Haze/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mudit.Haze;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DE389B27926A452E032D73A8 /* Build configuration list for PBXProject "Haze" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				066FFCC64C6BA73100DC99E0 /* Debug */,
+				1CB1D52E7FF5A9E3429944BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F0CEABE632E017CC5E79E798 /* Build configuration list for PBXNativeTarget "Haze" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1961EC652139434A489E36B7 /* Debug */,
+				472E02FB7A868B1797374012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6EA93D6782B50B25E111F341 /* Project object */;
+}

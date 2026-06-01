@@ -23,19 +23,14 @@ final class GestureEngine {
     func start() {
         guard !isRunning else { return }
         isRunning = true
-        startEventTapThread()
+        startEventMonitors()
     }
 
     /// Stop listening and tear down the event tap.
     func stop() {
         guard isRunning else { return }
         isRunning = false
-
-        if let runLoop = tapRunLoop {
-            CFRunLoopStop(runLoop)
-        }
-        tapRunLoop = nil
-        tapThread = nil
+        stopEventMonitors()
     }
 
     // MARK: - Private State
@@ -47,14 +42,8 @@ final class GestureEngine {
 
     private var isRunning = false
 
-    /// Dedicated thread that hosts the CGEventTap run-loop.
-    private var tapThread: Thread?
-
-    /// The CFRunLoop on the background thread (kept to allow `stop()`).
-    nonisolated(unsafe) private var tapRunLoop: CFRunLoop?
-
     /// Ring buffer of recent mouse positions + timestamps for the state machine.
-    nonisolated(unsafe) private var samples: [Sample] = []
+    private var samples: [Sample] = []
 
     /// Timestamp of the last accepted shake (for cooldown enforcement).
     nonisolated(unsafe) private var lastShakeTime: CFAbsoluteTime = 0
@@ -81,60 +70,40 @@ final class GestureEngine {
         let time: CFAbsoluteTime
     }
 
-    // MARK: - Background Thread Bootstrap
+    private var globalEventMonitor: Any?
+    private var localEventMonitor: Any?
 
-    private func startEventTapThread() {
-        let thread = Thread { [weak self] in
-            self?.runEventTap()
+    private func startEventMonitors() {
+        // Monitor events when Haze is NOT the active app (the common case)
+        globalEventMonitor = NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved) { [weak self] event in
+            self?.handleMouseMoved(event)
         }
-        thread.name = "com.haze.gesture-engine"
-        thread.qualityOfService = .userInteractive
-        tapThread = thread
-        thread.start()
+        
+        // Monitor events when Haze IS the active app (e.g. clicking the menubar)
+        localEventMonitor = NSEvent.addLocalMonitorForEvents(matching: .mouseMoved) { [weak self] event in
+            self?.handleMouseMoved(event)
+            return event
+        }
     }
 
-    /// Runs entirely on the background thread.  Sets up the CGEventTap and
-    /// enters a CFRunLoop.
-    nonisolated private func runEventTap() {
-        // We need a raw pointer to `self` for the C callback.  Using
-        // Unmanaged keeps us from preventing deinit — the reference is
-        // released when the run-loop is stopped and the source removed.
-        let selfPtr = Unmanaged.passUnretained(self).toOpaque()
-
-        let eventMask: CGEventMask = 1 << CGEventType.mouseMoved.rawValue
-
-        guard let tap = CGEvent.tapCreate(
-            tap: .cghidEventTap,
-            place: .headInsertEventTap,
-            options: .defaultTap,
-            eventsOfInterest: eventMask,
-            callback: gestureEventTapCallback,
-            userInfo: selfPtr
-        ) else {
-            Self.logger.error("Failed to create CGEventTap — Accessibility permission may not be granted. Open System Settings → Privacy & Security → Accessibility and enable Haze.")
-            return
+    private func stopEventMonitors() {
+        if let monitor = globalEventMonitor {
+            NSEvent.removeMonitor(monitor)
+            globalEventMonitor = nil
         }
-
-        let source = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, tap, 0)
-        let runLoop = CFRunLoopGetCurrent()
-        CFRunLoopAddSource(runLoop, source, .commonModes)
-        CGEvent.tapEnable(tap: tap, enable: true)
-
-        self.tapRunLoop = runLoop
-
-        // Run until CFRunLoopStop() is called from `stop()`.
-        CFRunLoopRun()
-
-        // Cleanup after the run-loop exits.
-        CGEvent.tapEnable(tap: tap, enable: false)
-        CFRunLoopRemoveSource(runLoop, source, .commonModes)
+        if let monitor = localEventMonitor {
+            NSEvent.removeMonitor(monitor)
+            localEventMonitor = nil
+        }
     }
 
-    // MARK: - Event Handling (called from C callback, nonisolated)
+    // MARK: - Event Handling
 
-    /// Process a single mouse-moved event.  Called on the background thread.
-    nonisolated fileprivate func handleMouseMoved(_ event: CGEvent) {
-        let location = event.location
+    /// Process a single mouse-moved event.
+    private func handleMouseMoved(_ event: NSEvent) {
+        // NSEvent location in window vs screen
+        // But for global/local mouseMoved, NSEvent.mouseLocation is safer.
+        let location = NSEvent.mouseLocation
         let now = CFAbsoluteTimeGetCurrent()
 
         let sample = Sample(x: location.x, y: location.y, time: now)
@@ -168,7 +137,9 @@ final class GestureEngine {
         var reversals = 0
         var totalTravel: CGFloat = 0
         var peakVelocity: CGFloat = 0
-        var previousVelocitySign: Int = 0  // -1, 0, +1
+        
+        var previousStrokeVector: CGPoint? = nil
+        var currentStrokeStart = relevant[0]
 
         for i in 1..<relevant.count {
             let dx = relevant[i].x - relevant[i - 1].x
@@ -176,7 +147,7 @@ final class GestureEngine {
             let dt = relevant[i].time - relevant[i - 1].time
             guard dt > 0 else { continue }
 
-            // Measure 2D velocity and total travel (more forgiving for natural diagonal movement)
+            // Measure 2D velocity and total travel
             let distance = sqrt(dx*dx + dy*dy)
             let velocity = distance / CGFloat(dt)  // px/s
             totalTravel += distance
@@ -185,15 +156,28 @@ final class GestureEngine {
                 peakVelocity = velocity
             }
 
-            // Track direction reversals purely on the X-axis for the "shake" left-right motion
-            let xVelocity = dx / CGFloat(dt)
-            // Use a slight deadzone (50 px/s) to ignore tiny horizontal jitters when mostly moving vertically
-            let currentSign: Int = xVelocity > 50 ? 1 : (xVelocity < -50 ? -1 : 0)
-            if currentSign != 0 && previousVelocitySign != 0 && currentSign != previousVelocitySign {
-                reversals += 1
-            }
-            if currentSign != 0 {
-                previousVelocitySign = currentSign
+            // Track segments. A segment is formed every 30 pixels of travel.
+            let strokeDx = relevant[i].x - currentStrokeStart.x
+            let strokeDy = relevant[i].y - currentStrokeStart.y
+            let strokeLength = sqrt(strokeDx*strokeDx + strokeDy*strokeDy)
+            
+            if strokeLength >= 30.0 {
+                // Normalize the stroke vector
+                let currentVector = CGPoint(x: strokeDx / strokeLength, y: strokeDy / strokeLength)
+                
+                if let prev = previousStrokeVector {
+                    // Calculate dot product (cos(theta) between vectors)
+                    let dotProduct = (prev.x * currentVector.x) + (prev.y * currentVector.y)
+                    
+                    // A dot product < -0.5 means the angle changed by > 120 degrees (a sharp zigzag turn).
+                    // A positive dot product means a smooth turn (e.g., drawing a circle).
+                    if dotProduct < -0.5 {
+                        reversals += 1
+                    }
+                }
+                
+                previousStrokeVector = currentVector
+                currentStrokeStart = relevant[i]
             }
         }
 
@@ -222,29 +206,4 @@ final class GestureEngine {
     }
 }
 
-// MARK: - C Callback (free function required by CGEvent.tapCreate)
-
-/// Free function used as the CGEventTap callback.  Bridges into
-/// ``GestureEngine/handleMouseMoved(_:)`` via the `userInfo` pointer.
-private func gestureEventTapCallback(
-    proxy: CGEventTapProxy,
-    type: CGEventType,
-    event: CGEvent,
-    userInfo: UnsafeMutableRawPointer?
-) -> Unmanaged<CGEvent>? {
-    // If the tap is disabled by the system (e.g. due to timeout), just
-    // pass the event through. For `.defaultTap` taps the system will
-    // automatically re-enable on the next event delivery.
-    if type == .tapDisabledByTimeout || type == .tapDisabledByUserInput {
-        return Unmanaged.passUnretained(event)
-    }
-
-    guard type == .mouseMoved, let userInfo else {
-        return Unmanaged.passUnretained(event)
-    }
-
-    let engine = Unmanaged<GestureEngine>.fromOpaque(userInfo).takeUnretainedValue()
-    engine.handleMouseMoved(event)
-
-    return Unmanaged.passUnretained(event)
-}
+// Removed C Callback logic
