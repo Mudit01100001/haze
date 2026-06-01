@@ -16,6 +16,9 @@ Added a Chromatic Aberration shader to separate the red, green, and blue color c
 ### Dual Window Compositing Architecture
 Split the Haze rendering engine into two synchronized, stacked windows to support complex masking for Dynamic Blur and Chromatic Aberration. This isolates the layers and prevents macOS WindowServer clipping bugs, allowing the film grain and dimming layers to composite flatly before being masked.
 
+### Animated Film Grain
+Upgraded the film grain from a static texture to a dynamically animated shader. The grain now continuously shifts and updates in real-time, providing a more authentic and tactile visual noise profile.
+
 ### Audio Signaling
 Implemented auditory feedback for toggling Haze on and off. Utilizes programmatically generated sine wave oscillators rather than static audio files. The deactivation sound incorporates a mid-range octave harmonic and an amplitude boost to provide a distinct audio signal when exiting a focus session.
 
