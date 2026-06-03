@@ -161,7 +161,9 @@ final class GestureEngine {
             let strokeDy = relevant[i].y - currentStrokeStart.y
             let strokeLength = sqrt(strokeDx*strokeDx + strokeDy*strokeDy)
             
-            if strokeLength >= 30.0 {
+            let requiredStrokeLength = max(5.0, 30.0 / sensitivity)
+            
+            if strokeLength >= requiredStrokeLength {
                 // Normalize the stroke vector
                 let currentVector = CGPoint(x: strokeDx / strokeLength, y: strokeDy / strokeLength)
                 

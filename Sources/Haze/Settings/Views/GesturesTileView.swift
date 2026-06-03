@@ -6,11 +6,9 @@ struct GesturesTileView: View {
     @ObservedObject private var settings = SettingsStore.shared
 
     var body: some View {
+        DisclosureGroup(isExpanded: $settings.isGesturesExpanded) {
         VStack(alignment: .leading, spacing: 10) {
-            // Section header
-            Text("GESTURES")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            
 
             // Sensitivity slider
             VStack(alignment: .leading, spacing: 4) {
@@ -23,7 +21,7 @@ struct GesturesTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.shakeSensitivity, in: 0.5...2.0)
+                ResetSlider(value: $settings.shakeSensitivity, range: settings.minSensitivityBoundary...settings.maxSensitivityBoundary, defaultValue: 1.0)
             }
 
             // Reversals stepper
@@ -33,8 +31,7 @@ struct GesturesTileView: View {
                 Spacer()
                 Stepper(
                     value: $settings.shakeReversals,
-                    in: 2...5,
-                    step: 1
+                    in: 2...10
                 ) {
                     Text("\(settings.shakeReversals)")
                         .font(.callout)
@@ -54,8 +51,11 @@ struct GesturesTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.shakeCooldown, in: 0.3...2.5)
+                ResetSlider(value: $settings.shakeCooldown, range: settings.minCooldownBoundary...settings.maxCooldownBoundary, defaultValue: 1.0)
             }
+        }
+        } label: {
+            Text("GESTURES").font(.caption).foregroundStyle(.secondary)
         }
         .glassCard()
     }

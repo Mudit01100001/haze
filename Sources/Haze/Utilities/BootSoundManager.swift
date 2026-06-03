@@ -77,7 +77,7 @@ final class BootSoundManager {
                 // Perfect 5th harmonic for warmth
                 let fifth = sin(2.0 * .pi * (self.frequency * 1.5) * t) * 0.4
                 
-                var sampleVal = (fundamental + fifth) * envelope * 0.12
+                var sampleVal = (fundamental + fifth) * envelope * 0.12 * Float(SettingsStore.shared.bootSoundVolume)
                 
                 if offSound {
                     // Slight pitch bend down for off sound
@@ -87,7 +87,7 @@ final class BootSoundManager {
                     let dropOctave = sin(2.0 * .pi * (self.frequency * 2.0 * pitchDrop) * t) * 0.3
                     
                     // Significantly louder multiplier for off sound with mid-range
-                    sampleVal = (dropFund + dropFifth + dropOctave) * envelope * 0.35
+                    sampleVal = (dropFund + dropFifth + dropOctave) * envelope * 0.35 * Float(SettingsStore.shared.turnOffSoundVolume)
                 }
                 
                 self.time += 1.0 / actualSampleRate

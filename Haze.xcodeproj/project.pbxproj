@@ -13,36 +13,49 @@
 		2F90F6EBB4EDAAF0D26CE3A1 /* BlurTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130A13E6793CD8EBDFEBF9FF /* BlurTileView.swift */; };
 		3969F008AD4E2EA8852CE346 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A598AAEE2C0E7DAF904138E7 /* Assets.xcassets */; };
 		4DEB5F28045D5C2DCB6E5F38 /* SettingsPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0999BF9B074596CA83A805 /* SettingsPopoverView.swift */; };
+		57251479414CE4B492F87385 /* EffectsConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE6F293CAF066C84F0E048 /* EffectsConfigView.swift */; };
+		6A69721B110EB4A2D6F9839E /* GeneralConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D32F89C72E5A6D8C307243 /* GeneralConfigView.swift */; };
 		6E331780F3A42F39D0A810B3 /* OverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86B3794D9E8D9B40590ED9E /* OverlayController.swift */; };
 		77ADC33BAD7B1760A63E7F76 /* GesturesTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180B56385B5E62C62EA3AC8 /* GesturesTileView.swift */; };
+		7995FA5885D091D60CC7EAD3 /* LiquidGlassBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC8B7A9DB8D1A187056C0C /* LiquidGlassBackground.swift */; };
 		7FFA259AD3BA1CAACFE40BB7 /* ScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E444D904BFDE6EEBFE8200 /* ScreenGeometry.swift */; };
 		86ED2E024E61B5DF64AE9C5E /* GrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAF580FE5023BC1B912619 /* GrainRenderer.swift */; };
 		942F1BE1A5718452C93D444D /* DimLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDA9E5ABC9D5AECBC099139 /* DimLayer.swift */; };
+		950A6FD69F315B0CF0BFA630 /* MenuBarCustomizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C12B8B6262FF4EFFD4445 /* MenuBarCustomizationView.swift */; };
 		95C49D9E37BE9EC2969D438B /* WindowTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29902B6AD92627064A741CF /* WindowTracker.swift */; };
 		9B3134B3A24B8DAF311B3C70 /* EffectsTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590B9ED694E0609CC3A5B87 /* EffectsTileView.swift */; };
 		A66326EB975C2336D1CF2A0D /* GrainShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 22BADC60D96E05E4EF1AC3FE /* GrainShaders.metal */; };
 		C01D8589E2E5DDF71089D110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DC3D7D0F9CACDEAF83B69B /* AppDelegate.swift */; };
 		C02B6D1CF354A4B3F9D3127B /* FilmGrain.metal in Sources */ = {isa = PBXBuildFile; fileRef = BDBEA99E694E48A85E9A2509 /* FilmGrain.metal */; };
+		CCCBD9BDB414BC14E05CDB69 /* MainSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187BDBF43EFF9BFBB34AD70 /* MainSettingsView.swift */; };
 		D0D26BF920262C83B36B2962 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031E67B7ED358557FC2BE4B /* SettingsStore.swift */; };
 		D1ACF5F4A76C08EE943EF74B /* GestureEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B1134704F41E835F88AB2 /* GestureEngine.swift */; };
+		D24F880694AA8EC13D170A1A /* AboutSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F7276A974C256CED16123 /* AboutSignatureView.swift */; };
 		DE5B4B135DF4C52632B958C5 /* GrainTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721ECFC61198A2A7A6B381E /* GrainTileView.swift */; };
+		FAE73D85B31657E7F7750887 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DDB18590492E3F097FE1E /* SettingsWindowController.swift */; };
 		FFC4F71E95673B00AC5B8FBF /* HazeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2620091100CB8BFF260FAF /* HazeApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0180B56385B5E62C62EA3AC8 /* GesturesTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesTileView.swift; sourceTree = "<group>"; };
 		0F86F39AFEC298882D98A059 /* Haze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haze.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1187BDBF43EFF9BFBB34AD70 /* MainSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettingsView.swift; sourceTree = "<group>"; };
 		130A13E6793CD8EBDFEBF9FF /* BlurTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTileView.swift; sourceTree = "<group>"; };
 		1907723C37D6A5075E1E64C5 /* BootSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootSoundManager.swift; sourceTree = "<group>"; };
 		22BADC60D96E05E4EF1AC3FE /* GrainShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GrainShaders.metal; sourceTree = "<group>"; };
 		24E444D904BFDE6EEBFE8200 /* ScreenGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenGeometry.swift; sourceTree = "<group>"; };
 		2669A3AA380913E37404F90E /* GrainEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrainEngine.swift; sourceTree = "<group>"; };
 		2BDA9E5ABC9D5AECBC099139 /* DimLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimLayer.swift; sourceTree = "<group>"; };
+		337DDB18590492E3F097FE1E /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		3B38855372126EC43F378FAC /* OverlayTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayTileView.swift; sourceTree = "<group>"; };
 		3E2620091100CB8BFF260FAF /* HazeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HazeApp.swift; sourceTree = "<group>"; };
+		52D32F89C72E5A6D8C307243 /* GeneralConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralConfigView.swift; sourceTree = "<group>"; };
+		6FDE6F293CAF066C84F0E048 /* EffectsConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsConfigView.swift; sourceTree = "<group>"; };
+		732F7276A974C256CED16123 /* AboutSignatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSignatureView.swift; sourceTree = "<group>"; };
 		7590B9ED694E0609CC3A5B87 /* EffectsTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsTileView.swift; sourceTree = "<group>"; };
 		763B1134704F41E835F88AB2 /* GestureEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEngine.swift; sourceTree = "<group>"; };
 		8721ECFC61198A2A7A6B381E /* GrainTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrainTileView.swift; sourceTree = "<group>"; };
+		967C12B8B6262FF4EFFD4445 /* MenuBarCustomizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarCustomizationView.swift; sourceTree = "<group>"; };
 		A598AAEE2C0E7DAF904138E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABAAF580FE5023BC1B912619 /* GrainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrainRenderer.swift; sourceTree = "<group>"; };
 		AC0999BF9B074596CA83A805 /* SettingsPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopoverView.swift; sourceTree = "<group>"; };
@@ -51,6 +64,7 @@
 		BDBEA99E694E48A85E9A2509 /* FilmGrain.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = FilmGrain.metal; sourceTree = "<group>"; };
 		C031E67B7ED358557FC2BE4B /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		C29902B6AD92627064A741CF /* WindowTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTracker.swift; sourceTree = "<group>"; };
+		CDBC8B7A9DB8D1A187056C0C /* LiquidGlassBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidGlassBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -81,12 +95,18 @@
 		19F3815B8FFFB1EDAD2562F8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				732F7276A974C256CED16123 /* AboutSignatureView.swift */,
 				130A13E6793CD8EBDFEBF9FF /* BlurTileView.swift */,
+				6FDE6F293CAF066C84F0E048 /* EffectsConfigView.swift */,
 				7590B9ED694E0609CC3A5B87 /* EffectsTileView.swift */,
+				52D32F89C72E5A6D8C307243 /* GeneralConfigView.swift */,
 				0180B56385B5E62C62EA3AC8 /* GesturesTileView.swift */,
 				8721ECFC61198A2A7A6B381E /* GrainTileView.swift */,
+				1187BDBF43EFF9BFBB34AD70 /* MainSettingsView.swift */,
+				967C12B8B6262FF4EFFD4445 /* MenuBarCustomizationView.swift */,
 				3B38855372126EC43F378FAC /* OverlayTileView.swift */,
 				AC0999BF9B074596CA83A805 /* SettingsPopoverView.swift */,
+				92C1F6F3A1BAD3435D98A325 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +145,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		92C1F6F3A1BAD3435D98A325 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CDBC8B7A9DB8D1A187056C0C /* LiquidGlassBackground.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		94759C14AA8D38BEF929910D /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				C031E67B7ED358557FC2BE4B /* SettingsStore.swift */,
+				337DDB18590492E3F097FE1E /* SettingsWindowController.swift */,
 				19F3815B8FFFB1EDAD2562F8 /* Views */,
 			);
 			path = Settings;
@@ -224,12 +253,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D24F880694AA8EC13D170A1A /* AboutSignatureView.swift in Sources */,
 				C01D8589E2E5DDF71089D110 /* AppDelegate.swift in Sources */,
 				2F90F6EBB4EDAAF0D26CE3A1 /* BlurTileView.swift in Sources */,
 				113AAC2394E63FD6C2883D15 /* BootSoundManager.swift in Sources */,
 				942F1BE1A5718452C93D444D /* DimLayer.swift in Sources */,
+				57251479414CE4B492F87385 /* EffectsConfigView.swift in Sources */,
 				9B3134B3A24B8DAF311B3C70 /* EffectsTileView.swift in Sources */,
 				C02B6D1CF354A4B3F9D3127B /* FilmGrain.metal in Sources */,
+				6A69721B110EB4A2D6F9839E /* GeneralConfigView.swift in Sources */,
 				D1ACF5F4A76C08EE943EF74B /* GestureEngine.swift in Sources */,
 				77ADC33BAD7B1760A63E7F76 /* GesturesTileView.swift in Sources */,
 				170BBA011DCF07C82E278B98 /* GrainEngine.swift in Sources */,
@@ -237,11 +269,15 @@
 				A66326EB975C2336D1CF2A0D /* GrainShaders.metal in Sources */,
 				DE5B4B135DF4C52632B958C5 /* GrainTileView.swift in Sources */,
 				FFC4F71E95673B00AC5B8FBF /* HazeApp.swift in Sources */,
+				7995FA5885D091D60CC7EAD3 /* LiquidGlassBackground.swift in Sources */,
+				CCCBD9BDB414BC14E05CDB69 /* MainSettingsView.swift in Sources */,
+				950A6FD69F315B0CF0BFA630 /* MenuBarCustomizationView.swift in Sources */,
 				6E331780F3A42F39D0A810B3 /* OverlayController.swift in Sources */,
 				20D74AB9163E972F6F62ECE2 /* OverlayTileView.swift in Sources */,
 				7FFA259AD3BA1CAACFE40BB7 /* ScreenGeometry.swift in Sources */,
 				4DEB5F28045D5C2DCB6E5F38 /* SettingsPopoverView.swift in Sources */,
 				D0D26BF920262C83B36B2962 /* SettingsStore.swift in Sources */,
+				FAE73D85B31657E7F7750887 /* SettingsWindowController.swift in Sources */,
 				95C49D9E37BE9EC2969D438B /* WindowTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

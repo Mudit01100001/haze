@@ -21,7 +21,14 @@ struct SettingsPopoverView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
-                .padding(.trailing, 4)
+                
+                Button {
+                    SettingsWindowController.shared.open()
+                } label: {
+                    Image(systemName: "gear")
+                }
+                .buttonStyle(.borderless)
+                .padding(.trailing, 8)
 
                 Toggle("", isOn: $settings.isEnabled)
                     .toggleStyle(.switch)
@@ -37,11 +44,21 @@ struct SettingsPopoverView: View {
             // MARK: - Tile List
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 10) {
-                    BlurTileView()
-                    OverlayTileView()
-                    GrainTileView()
-                    EffectsTileView()
-                    GesturesTileView()
+                    if settings.showBlurInMenuBar {
+                        BlurTileView()
+                    }
+                    if settings.showDimmingInMenuBar {
+                        OverlayTileView()
+                    }
+                    if settings.showGrainInMenuBar {
+                        GrainTileView()
+                    }
+                    if settings.showCAInMenuBar {
+                        EffectsTileView()
+                    }
+                    if settings.showGesturesInMenuBar {
+                        GesturesTileView()
+                    }
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)

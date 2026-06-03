@@ -6,11 +6,9 @@ struct BlurTileView: View {
     @ObservedObject private var settings = SettingsStore.shared
 
     var body: some View {
+        DisclosureGroup(isExpanded: $settings.isBlurExpanded) {
         VStack(alignment: .leading, spacing: 10) {
-            // Section header
-            Text("BLUR")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            
 
             // Blur-free mode toggle
             Toggle("Blur-free mode", isOn: $settings.isBlurFreeMode)
@@ -28,7 +26,7 @@ struct BlurTileView: View {
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                     }
-                    Slider(value: $settings.blurRadius, in: 0...40)
+                    ResetSlider(value: $settings.blurRadius, range: settings.minBlurBoundary...settings.maxBlurBoundary, defaultValue: 20.0)
                 }
             }
 
@@ -53,7 +51,7 @@ struct BlurTileView: View {
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                     }
-                    Slider(value: $settings.dynamicBlurFalloff, in: 0.1...3.0)
+                    ResetSlider(value: $settings.dynamicBlurFalloff, range: settings.minFalloffBoundary...settings.maxFalloffBoundary, defaultValue: 1.0)
                 }
                 .padding(.leading, 16)
             }
@@ -76,9 +74,12 @@ struct BlurTileView: View {
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                     }
-                    Slider(value: $settings.grayscaleIntensity, in: 0...1)
+                    ResetSlider(value: $settings.grayscaleIntensity, range: 0...1, defaultValue: 0.0)
                 }
             }
+        }
+        } label: {
+            Text("BLUR").font(.caption).foregroundStyle(.secondary)
         }
         .glassCard()
     }

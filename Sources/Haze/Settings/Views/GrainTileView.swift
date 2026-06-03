@@ -6,11 +6,9 @@ struct GrainTileView: View {
     @ObservedObject private var settings = SettingsStore.shared
 
     var body: some View {
+        DisclosureGroup(isExpanded: $settings.isGrainExpanded) {
         VStack(alignment: .leading, spacing: 10) {
-            // Section header
-            Text("GRAIN")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            
 
 
 
@@ -25,7 +23,7 @@ struct GrainTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.grainIntensity, in: 0...1)
+                ResetSlider(value: $settings.grainIntensity, range: settings.minGrainBoundary...settings.maxGrainBoundary, defaultValue: 0.5)
             }
 
             // Size slider
@@ -39,7 +37,7 @@ struct GrainTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.grainSize, in: 0.5...4)
+                ResetSlider(value: $settings.grainSize, range: 0.5...4, defaultValue: 1.0)
             }
 
             // Animation toggle
@@ -58,10 +56,13 @@ struct GrainTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.grainSpeed, in: 0.5...3)
+                ResetSlider(value: $settings.grainSpeed, range: 0.5...3, defaultValue: 1.0)
             }
             .opacity(settings.isGrainAnimated ? 1.0 : 0.5)
             .disabled(!settings.isGrainAnimated)
+        }
+        } label: {
+            Text("FILM GRAIN").font(.caption).foregroundStyle(.secondary)
         }
         .glassCard()
     }

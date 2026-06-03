@@ -6,10 +6,9 @@ struct EffectsTileView: View {
     @ObservedObject private var settings = SettingsStore.shared
     
     var body: some View {
+        DisclosureGroup(isExpanded: $settings.isCAExpanded) {
         VStack(alignment: .leading, spacing: 10) {
-            Text("EFFECTS")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            
             
             // Boot Sound toggle
             Toggle("Premium Boot Sound", isOn: $settings.isBootSoundEnabled)
@@ -32,10 +31,13 @@ struct EffectsTileView: View {
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                     }
-                    Slider(value: $settings.chromaticAberrationIntensity, in: 0...20)
+                    ResetSlider(value: $settings.chromaticAberrationIntensity, range: settings.minCABoundary...settings.maxCABoundary, defaultValue: 10.0)
                 }
                 .padding(.leading, 16)
             }
+        }
+        } label: {
+            Text("EFFECTS").font(.caption).foregroundStyle(.secondary)
         }
         .glassCard()
     }

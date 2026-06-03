@@ -43,6 +43,22 @@ final class SettingsStore: ObservableObject {
     /// Intensity of the chromatic aberration. Range: 0–20.
     @AppStorage("chromaticAberrationIntensity") var chromaticAberrationIntensity: Double = 5.0
 
+    // MARK: - Bounds Calibration (Additional)
+    @AppStorage("minFalloffBoundary") var minFalloffBoundary: Double = 0.1
+    @AppStorage("maxFalloffBoundary") var maxFalloffBoundary: Double = 10.0
+    
+    @AppStorage("minFadeInBoundary") var minFadeInBoundary: Double = 0.0
+    @AppStorage("maxFadeInBoundary") var maxFadeInBoundary: Double = 5.0
+    
+    @AppStorage("minFadeOutBoundary") var minFadeOutBoundary: Double = 0.0
+    @AppStorage("maxFadeOutBoundary") var maxFadeOutBoundary: Double = 5.0
+    
+    @AppStorage("minSensitivityBoundary") var minSensitivityBoundary: Double = 0.1
+    @AppStorage("maxSensitivityBoundary") var maxSensitivityBoundary: Double = 20.0
+    
+    @AppStorage("minCooldownBoundary") var minCooldownBoundary: Double = 0.1
+    @AppStorage("maxCooldownBoundary") var maxCooldownBoundary: Double = 5.0
+
     // MARK: - Audio
 
     /// Whether the premium bootup synth chime plays on overlay activation.
@@ -88,6 +104,43 @@ final class SettingsStore: ObservableObject {
 
     /// Duration of the overlay fade-out animation, in seconds. Range: 0.1–1.0.
     @AppStorage("fadeOutDuration") var fadeOutDuration: Double = 0.35
+
+    // MARK: - App Expansion Boundaries
+
+    @AppStorage("minBlurBoundary") var minBlurBoundary: Double = 0.0
+    @AppStorage("maxBlurBoundary") var maxBlurBoundary: Double = 40.0
+
+    @AppStorage("minDimmingBoundary") var minDimmingBoundary: Double = 0.0
+    @AppStorage("maxDimmingBoundary") var maxDimmingBoundary: Double = 0.9
+
+    @AppStorage("minGrainBoundary") var minGrainBoundary: Double = 0.0
+    @AppStorage("maxGrainBoundary") var maxGrainBoundary: Double = 1.0
+
+    @AppStorage("minCABoundary") var minCABoundary: Double = 0.0
+    @AppStorage("maxCABoundary") var maxCABoundary: Double = 20.0
+
+    // MARK: - Menu Bar Customization
+
+    @AppStorage("showBlurInMenuBar") var showBlurInMenuBar: Bool = true
+    @AppStorage("showDimmingInMenuBar") var showDimmingInMenuBar: Bool = true
+    @AppStorage("showGrainInMenuBar") var showGrainInMenuBar: Bool = true
+    @AppStorage("showCAInMenuBar") var showCAInMenuBar: Bool = true
+    @AppStorage("showGesturesInMenuBar") var showGesturesInMenuBar: Bool = true
+
+    // MARK: - Menu Bar Expansion State (Memory)
+
+    @AppStorage("isBlurExpanded") var isBlurExpanded: Bool = true
+    @AppStorage("isDimmingExpanded") var isDimmingExpanded: Bool = true
+    @AppStorage("isGrainExpanded") var isGrainExpanded: Bool = true
+    @AppStorage("isCAExpanded") var isCAExpanded: Bool = true
+    @AppStorage("isGesturesExpanded") var isGesturesExpanded: Bool = true
+
+    // MARK: - Audio Volume
+
+    @AppStorage("isTurnOffSoundEnabled") var isTurnOffSoundEnabled: Bool = true
+
+    @AppStorage("bootSoundVolume") var bootSoundVolume: Double = 1.0
+    @AppStorage("turnOffSoundVolume") var turnOffSoundVolume: Double = 1.0
 
     private init() {}
 }

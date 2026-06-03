@@ -30,11 +30,9 @@ struct OverlayTileView: View {
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 3)
 
     var body: some View {
+        DisclosureGroup(isExpanded: $settings.isDimmingExpanded) {
         VStack(alignment: .leading, spacing: 10) {
-            // Section header
-            Text("OVERLAY")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            
 
             // Opacity slider
             VStack(alignment: .leading, spacing: 4) {
@@ -47,7 +45,7 @@ struct OverlayTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.dimOpacity, in: 0...0.9)
+                ResetSlider(value: $settings.dimOpacity, range: settings.minDimmingBoundary...settings.maxDimmingBoundary, defaultValue: 0.5)
             }
 
             Divider()
@@ -82,7 +80,7 @@ struct OverlayTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.fadeInDuration, in: 0.2...2.0)
+                ResetSlider(value: $settings.fadeInDuration, range: settings.minFadeInBoundary...settings.maxFadeInBoundary, defaultValue: 0.5)
             }
 
             // Fade Out slider
@@ -96,8 +94,11 @@ struct OverlayTileView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                Slider(value: $settings.fadeOutDuration, in: 0.1...1.0)
+                ResetSlider(value: $settings.fadeOutDuration, range: settings.minFadeOutBoundary...settings.maxFadeOutBoundary, defaultValue: 0.5)
             }
+        }
+        } label: {
+            Text("OVERLAY / DIMMING").font(.caption).foregroundStyle(.secondary)
         }
         .glassCard()
         .onAppear {

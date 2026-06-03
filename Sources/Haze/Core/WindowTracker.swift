@@ -33,17 +33,21 @@ final class WindowTracker {
             forName: NSWorkspace.didActivateApplicationNotification,
             object: nil,
             queue: .main
-        ) { [weak self] _ in
+        ) { [weak self] notification in
+            guard let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else { return }
+            let targetPID = app.processIdentifier
+            
             Task { @MainActor [weak self] in
-                // Delay slightly because CGWindowListCopyWindowInfo takes a frame to update
-                // its Z-order after an app switch notification.
-                try? await Task.sleep(nanoseconds: 100_000_000) // 100ms
-                self?.handleAppActivation()
+                await self?.pollForAppActivation(targetPID: targetPID)
             }
         }
 
         // Fire immediately with current state.
-        handleAppActivation()
+        if let frontmostApp = NSWorkspace.shared.frontmostApplication {
+            Task { @MainActor [weak self] in
+                await self?.pollForAppActivation(targetPID: frontmostApp.processIdentifier)
+            }
+        }
     }
 
     /// Stop observing.
@@ -61,7 +65,7 @@ final class WindowTracker {
     /// Query the current frontmost window on demand.
     /// Returns `nil` if no suitable window can be found.
     func currentFrontmostWindowID() -> CGWindowID? {
-        return Self.resolveFrontmostWindow()
+        return Self.resolveFrontmostWindow(targetPID: nil)
     }
 
     // MARK: - Private State
@@ -82,26 +86,41 @@ final class WindowTracker {
 
     // MARK: - Activation Handling
 
-    private func handleAppActivation() {
-        guard let windowID = Self.resolveFrontmostWindow() else {
-            Self.logger.debug("No suitable frontmost window found after activation.")
-            return
+    /// Polls until the window server updates its internal state and puts the target PID's window at the top.
+    private func pollForAppActivation(targetPID: pid_t) async {
+        let maxAttempts = 20 // Max 200ms
+        let interval: UInt64 = 10_000_000 // 10ms
+        
+        for attempt in 0..<maxAttempts {
+            if let windowID = Self.resolveFrontmostWindow(targetPID: targetPID) {
+                // We found a window matching the target PID at the top!
+                
+                guard windowID != lastReportedWindowID else { return }
+                lastReportedWindowID = windowID
+
+                Self.logger.info("Frontmost window changed (PID: \(targetPID)) to \(windowID) after \(attempt) attempts.")
+                onFrontmostWindowChanged?(windowID)
+                return
+            }
+            
+            try? await Task.sleep(nanoseconds: interval)
         }
-
-        // Only fire the callback when the window actually changed.
-        guard windowID != lastReportedWindowID else { return }
-        lastReportedWindowID = windowID
-
-        Self.logger.info("Frontmost window changed: \(windowID)")
-        onFrontmostWindowChanged?(windowID)
+        
+        // Fallback: If we exhausted all attempts, just take whatever is on top.
+        if let windowID = Self.resolveFrontmostWindow(targetPID: nil) {
+            guard windowID != lastReportedWindowID else { return }
+            lastReportedWindowID = windowID
+            Self.logger.warning("Fallback: Window changed to \(windowID) (Expected PID \(targetPID) but exhausted attempts).")
+            onFrontmostWindowChanged?(windowID)
+        }
     }
 
     // MARK: - Window Resolution
 
     /// Queries the window server for all on-screen windows, filters out
     /// Haze-owned and desktop/screensaver-level windows, and returns the
-    /// topmost remaining window ID.
-    private static func resolveFrontmostWindow() -> CGWindowID? {
+    /// topmost remaining window ID. If a targetPID is provided, it only returns a window if it belongs to that PID.
+    private static func resolveFrontmostWindow(targetPID: pid_t?) -> CGWindowID? {
         // Request on-screen windows in front-to-back order.
         guard let infoList = CGWindowListCopyWindowInfo(
             [.optionOnScreenOnly, .excludeDesktopElements],
@@ -135,6 +154,17 @@ final class WindowTracker {
                let boundsRect = CGRect(dictionaryRepresentation: boundsDict as CFDictionary) {
                 if boundsRect.width < 50 || boundsRect.height < 50 {
                     continue
+                }
+            }
+
+            // If we are looking for a specific PID, ensure this topmost valid window belongs to it.
+            if let targetPID = targetPID {
+                if ownerPID == targetPID {
+                    return windowNumber
+                } else {
+                    // The topmost valid window does NOT belong to the target PID yet.
+                    // This means the WindowServer hasn't updated the order. Return nil so we keep polling.
+                    return nil
                 }
             }
 

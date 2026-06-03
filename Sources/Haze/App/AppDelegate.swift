@@ -109,6 +109,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             menu.addItem(NSMenuItem(title: "About Haze", action: #selector(showAbout), keyEquivalent: ""))
             menu.addItem(NSMenuItem(title: "Check for Updates", action: #selector(checkUpdates), keyEquivalent: ""))
             menu.addItem(NSMenuItem.separator())
+            menu.addItem(NSMenuItem(title: "Settings...", action: #selector(openSettingsFromMenu), keyEquivalent: ","))
+            menu.addItem(NSMenuItem.separator())
             menu.addItem(NSMenuItem(title: "Quit Haze", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
             
             statusItem.menu = menu
@@ -117,6 +119,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             togglePopover(sender)
         }
+    }
+
+    @objc private func openSettingsFromMenu() {
+        SettingsWindowController.shared.open()
     }
 
     @objc private func showAbout() {
