@@ -32,8 +32,8 @@ final class SettingsStore: ObservableObject {
     /// Whether dynamic radial blur is inverted (center is blurry instead of clear).
     @AppStorage("invertDynamicBlur") var invertDynamicBlur: Bool = false
 
-    /// Falloff multiplier for the dynamic blur gradient. Range: 0.1–3.0.
-    @AppStorage("dynamicBlurFalloff") var dynamicBlurFalloff: Double = 1.6
+    /// Falloff multiplier for the dynamic blur gradient. Default 0.2; menu-bar slider spans 0.1–0.3.
+    @AppStorage("dynamicBlurFalloff") var dynamicBlurFalloff: Double = 0.2
 
     // MARK: - Chromatic Aberration (Lens Effect)
 
@@ -45,7 +45,7 @@ final class SettingsStore: ObservableObject {
 
     // MARK: - Bounds Calibration (Additional)
     @AppStorage("minFalloffBoundary") var minFalloffBoundary: Double = 0.1
-    @AppStorage("maxFalloffBoundary") var maxFalloffBoundary: Double = 10.0
+    @AppStorage("maxFalloffBoundary") var maxFalloffBoundary: Double = 0.3
     
     @AppStorage("minFadeInBoundary") var minFadeInBoundary: Double = 0.0
     @AppStorage("maxFadeInBoundary") var maxFadeInBoundary: Double = 5.0

@@ -1,3 +1,18 @@
+# Haze v2.0.1 — Dynamic Blur Fixes
+
+A bug-fix release focused on Dynamic Radial Blur reliability and feel.
+
+### Multi-Monitor Support
+Fixed Dynamic Radial Blur on multi-display setups. The active window's position was being computed by mixing two different coordinate systems (Quartz window bounds vs. Cocoa screen frames), which collapsed the focal portal on any secondary display — the active monitor would show nothing while the inactive one blurred fully. Window coordinates are now converted into a single consistent space using the primary display's geometry, so the clear portal lands correctly on the active window on every screen. Moving focus between monitors now hands the portal off cleanly, and a stray mask offset that misplaced the Chromatic Aberration layer on secondary displays was fixed too.
+
+### Smooth Falloff
+Replaced the hard-edged focal circle with a true, smooth depth-of-field transition. The gradient now extends past the active window and ramps gradually from clear into the blurred periphery, instead of cutting off at a sharp line — without fading into the window's own edges.
+
+### Falloff Slider
+Recentered the menu-bar Blur Falloff slider so its default sits in the middle of the range, and fixed a mismatch between the reset marker and the actual default value.
+
+---
+
 # Haze v2.0 Beta Release
 
 ## What is New in v2.0

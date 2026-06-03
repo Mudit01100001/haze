@@ -296,8 +296,14 @@ final class OverlayController {
     private func applyDynamicVignette(activeWindowID: CGWindowID) {
         let store = SettingsStore.shared
         
-        guard let winFrame = WindowTracker.getWindowFrame(windowID: activeWindowID) else { return }
-        
+        guard let rawWinFrame = WindowTracker.getWindowFrame(windowID: activeWindowID) else { return }
+
+        // getWindowFrame returns Quartz global coords (origin = top-left of the PRIMARY display,
+        // y-down). NSScreen.frame is Cocoa global coords (origin = bottom-left, y-up). Mixing the
+        // two silently broke every secondary display, so convert the window rect into Cocoa global
+        // coords once here and work entirely in that space below.
+        let winFrame = Self.cocoaGlobalRect(fromQuartz: rawWinFrame)
+
         // Find which screen contains the center of the active window
         let winCenter = CGPoint(x: winFrame.midX, y: winFrame.midY)
         var activeDisplayID: CGDirectDisplayID? = nil
@@ -315,14 +321,18 @@ final class OverlayController {
             // If this is not the active screen, apply a solid mask (or no cutout)
             if id != activeDisplayID {
                 // Not the active screen -> Fully blurred.
-                // Reset masks so it's a solid sheet of effect.
+                // Reset masks so it's a solid sheet of effect. blurLayer must be cleared too, or a
+                // stale cutout lingers on this screen after the active window moves to another one.
+                overlay.blurLayer?.mask = nil
                 overlay.dimLayer.mask = nil
                 overlay.grainRenderer?.metalView.layer?.mask = nil
                 overlay.overlayWindow.contentView?.layer?.mask = nil
                 overlay.caWindow.contentView?.layer?.mask = nil
-                
+
                 let caMaskLayer = CAGradientLayer()
-                caMaskLayer.frame = screen
+                // A mask's frame is in the masked layer's LOCAL space (origin .zero), not the
+                // screen's global origin — using `screen` pushed it off secondary displays.
+                caMaskLayer.frame = CGRect(origin: .zero, size: screen.size)
                 caMaskLayer.type = .radial
                 caMaskLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
                 caMaskLayer.endPoint = CGPoint(x: 1.2, y: 1.2)
@@ -334,9 +344,10 @@ final class OverlayController {
             }
             
             // THIS IS THE ACTIVE SCREEN
+            // winFrame is already Cocoa global; the layer's unit space is bottom-left origin, so
+            // the window's local position is just its global position minus this screen's origin.
             let winX = winFrame.minX - screen.minX
-            // Invert Y for CoreAnimation coordinate space
-            let winY = screen.height - (winFrame.minY - screen.minY) - winFrame.height
+            let winY = winFrame.minY - screen.minY
             let activeRect = CGRect(x: winX, y: winY, width: winFrame.width, height: winFrame.height)
             
             // --- 1. Permanent CA Edge Mask ---
@@ -386,16 +397,21 @@ final class OverlayController {
                 // Offsetting only X left the vertical radius at zero, collapsing the ellipse so the
                 // mask rendered as one flat colour and no focal cutout ever formed. Offset Y as well,
                 // scaled by the screen aspect ratio so the portal is a true circle on screen.
+                // Extend the gradient to 2x the core radius so the smooth falloff ramps in the
+                // periphery (beyond the window) instead of fading into the window's own edges.
+                let edgeRadius = finalRadius * 2.0
                 let aspect = screen.width / screen.height
-                mask.endPoint = CGPoint(x: center.x + finalRadius, y: center.y + finalRadius * aspect)
-                
-                // Hardcode locations just inside 1.0 to ensure a perfectly crisp, stable edge
+                mask.endPoint = CGPoint(x: center.x + edgeRadius, y: center.y + edgeRadius * aspect)
+
+                // Smooth depth-of-field falloff: hold the plateau across the inner half (the core,
+                // which covers the active window), then ramp gradually over the outer half. Replaces
+                // the old 1.5%-wide razor edge that read as a hard circle.
                 if store.invertDynamicBlur {
                     mask.colors = [black, black, clear]
-                    mask.locations = [0.0, 0.985, 1.0]
+                    mask.locations = [0.0, 0.5, 1.0]
                 } else {
                     mask.colors = [clear, clear, black]
-                    mask.locations = [0.0, 0.985, 1.0]
+                    mask.locations = [0.0, 0.5, 1.0]
                 }
                 return mask
             }
@@ -433,6 +449,20 @@ final class OverlayController {
         }
     }
     
+    /// Converts a rect from Quartz global coordinates (origin = top-left of the primary display,
+    /// y increasing downward — as returned by `CGWindowListCopyWindowInfo`) into Cocoa global
+    /// coordinates (origin = bottom-left of the primary display, y increasing upward — the space
+    /// `NSScreen.frame` uses). X is identical in both; only Y flips, about the primary's height.
+    private static func cocoaGlobalRect(fromQuartz q: CGRect) -> CGRect {
+        let primaryHeight = NSScreen.screens.first(where: { $0.frame.origin == .zero })?.frame.height
+            ?? NSScreen.main?.frame.height
+            ?? q.height
+        return CGRect(x: q.origin.x,
+                      y: primaryHeight - q.origin.y - q.height,
+                      width: q.width,
+                      height: q.height)
+    }
+
     @objc private func screenParametersDidChange(_ notification: Notification) {
         setupOverlays()
         for overlay in screenOverlays.values {

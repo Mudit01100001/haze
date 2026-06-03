@@ -51,7 +51,7 @@ struct BlurTileView: View {
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                     }
-                    ResetSlider(value: $settings.dynamicBlurFalloff, range: settings.minFalloffBoundary...settings.maxFalloffBoundary, defaultValue: 1.0)
+                    ResetSlider(value: $settings.dynamicBlurFalloff, range: settings.minFalloffBoundary...settings.maxFalloffBoundary, defaultValue: 0.2)
                 }
                 .padding(.leading, 16)
             }
